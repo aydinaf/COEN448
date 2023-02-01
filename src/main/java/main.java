@@ -3,11 +3,12 @@ import java.io.*;
 public class main {
 
     public static void main(String[] args) {
-        int arraySize = 10;
-        int[][] starterArray = initializeArray(10);
-        printBoard(starterArray,arraySize);
+        Player bot = new Player(0, 0, "Up", "North");
+        int arraySize = 10; //will need to get from input command
+        int[][] starterArray = initializeArray(arraySize, bot);
+        printBoard(starterArray,arraySize, bot);
     }
-    static int[][]  initializeArray(int arraySize)
+    static int[][]  initializeArray(int arraySize, Player p1)
     {
         int[][] newBoard = new int[arraySize][arraySize];
         for (int i = 0; i < arraySize; i++)
@@ -20,7 +21,7 @@ public class main {
         return newBoard;
     }
 
-    static void printBoard(int[][] board, int arraySize)
+    static void printBoard(int[][] board, int arraySize, Player p1)
     {
         String[][] printedBoard = new String[arraySize][arraySize];
         for (int i = 0; i < arraySize; i++)
@@ -37,6 +38,8 @@ public class main {
                 }
             }
         }
+
+        printedBoard[p1.horzPos][p1.vertPos] = "P";
         for(String[] row : printedBoard)
         {
             System.out.println(Arrays.toString(row));
