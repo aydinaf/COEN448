@@ -1,7 +1,7 @@
 <archetype>
   <id>COEN448-Assignment1</id>
   <sources>
-    <source>src/main/java/App.java</source>
+    <source>src/Driver/java/App.java</source>
   </sources>
   <testSources>
     <source>src/test/java/AppTest.java</source>
