@@ -15,7 +15,7 @@ public class Driver {
             System.out.println("Enter command:");
             userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
-            if (userString.equals("Q") || userString.equals("q"))
+            if (userString.contains("Q") || userString.contains("q"))
             {
                 isEnded = true;
                 System.out.println("Ending Program");
@@ -38,22 +38,26 @@ public class Driver {
                  if (userString.contains("I") || userString.contains("i")) {
                     initializeArray(userString);
                 }
-                 else if (userString.equals("C") || userString.equals("c")) {
+                 else if (userString.contains("P") || userString.contains("p")) {
                     printBoard(p1);
                 }
-                 else if (userString.equals("U") || userString.equals("u")) {
+                 else if (userString.contains("C") || userString.contains("c")) {
+                     printDetails(p1);
+                 }
+
+                 else if (userString.contains("U") || userString.contains("u")) {
                      p1.setPen("Up");
                      System.out.println("The pen is set " + p1.pen);
                  }
-                 else if (userString.equals("D") || userString.equals("d")) {
+                 else if (userString.contains("D") || userString.contains("d")) {
                      p1.setPen("Down");
                      System.out.println("The pen is set " + p1.pen);
                  }
-                 else if (userString.equals("R") || userString.equals("r")) { //need to fix this to take into account the players current orientation
+                 else if (userString.contains("R") || userString.contains("r")) { //need to fix this to take into account the players current orientation
                      p1.setOrientation("East");
                      System.out.println("The player is facing " + p1.orientation);
                  }
-                 else if (userString.equals("L") || userString.equals("l")) {  //need to fix this to take into account the players current orientation
+                 else if (userString.contains("L") || userString.contains("l")) {  //need to fix this to take into account the players current orientation
                      p1.setOrientation("West");
                      System.out.println("The player is facing " + p1.orientation);
                  }
@@ -78,6 +82,11 @@ public class Driver {
             System.out.println("Invalid initialization input");
         }
         return p1;
+    }
+
+    static void printDetails(Player p1)
+    {
+        System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
     }
 
     static void printBoard(Player p1) {
