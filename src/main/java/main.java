@@ -2,25 +2,39 @@ import java.util.*;
 import java.io.*;
 import java.util.Scanner;
 
+
 public class main {
 
+    public static boolean isEnded = false;
+    static Scanner userInput = null;
     public static void main(String[] args) {
-        Player bot = new Player(0, 0, "Up", "North");
-        Scanner userInput = new Scanner(System.in);
-        System.out.print("Please enter a number for grid size: ");
-        int arraySize = userInput.nextInt(); //will need to get from input command
-        int[][] starterArray = initializeArray(arraySize, bot);
-        printBoard(starterArray, arraySize, bot);
+
+        while (!isEnded) {
+            System.out.println("Enter command:");
+            userInput = new Scanner(System.in);
+            String userString = userInput.nextLine();
+            System.out.println("You entered command: " + userString);
+            if (userString.contains("Q") || userString.contains("q"))
+            {
+                isEnded = true;
+            } else if (userString.contains("I") || userString.contains("i")) {
+                initializeArray(userString);
+            }
+        }
     }
 
-    static int[][] initializeArray(int arraySize, Player p1) {
+
+    static void initializeArray(String userString) {
+        Player p1 = new Player(0, 0, "Up", "North");
+        int arraySize = Integer.parseInt(userString.substring(2, userString.length()));
+        System.out.println("Array size entered is: " + arraySize);
         int[][] newBoard = new int[arraySize][arraySize];
         for (int i = 0; i < arraySize; i++) {
             for (int j = 0; j < arraySize; j++) {
                 newBoard[i][j] = 0;
             }
         }
-        return newBoard;
+        printBoard(newBoard, arraySize, p1);
     }
 
     static void printBoard(int[][] board, int arraySize, Player p1) {
