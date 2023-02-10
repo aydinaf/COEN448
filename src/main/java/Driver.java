@@ -7,7 +7,7 @@ public class Driver {
     public static boolean isEnded = false;
     static Scanner userInput = null;
 
-    static Player p1 =  new Player(0, 0, "", "", new int[0][0], 0, false);
+    static Player p1 = new Player(0, 0, "", "", new int[0][0], 0, false);
 
     public static void main(String[] args) {
 
@@ -15,67 +15,58 @@ public class Driver {
             System.out.println("Enter command:");
             userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
-            if (userString.contains("Q") || userString.contains("q"))
-            {
+            if(userString.length()==0){
+                continue;
+            }
+            if (userString.contains("Q") || userString.contains("q")) {
                 isEnded = true;
                 System.out.println("Ending Program");
                 break;
             }
 
             System.out.println("You entered command: " + userString);
-            if(!p1.isPlayerCreated)
-            {
-                if (userString.contains("I") || userString.contains("i")) {
+            if (!p1.isPlayerCreated) {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
                     p1 = initializeArray(userString);
-                }
-                else
-                {
+                } else {
                     System.out.println("Invalid command. The game needs to be initialized first");
                 }
-            }
-            else
-            {
-                 if (userString.contains("I") || userString.contains("i")) {
+            } else {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
                     initializeArray(userString);
-                }
-                 else if (userString.contains("P") || userString.contains("p")) {
+                } else if (userString.equals("P") || userString.equals("p")) {
                     printBoard(p1);
+                } else if (userString.equals("C") || userString.equals("c")) {
+                    printDetails(p1);
+                } else if (userString.equals("U") || userString.equals("u")) {
+                    p1.setPen("Up");
+                    System.out.println("The pen is set " + p1.pen);
+                } else if (userString.equals("D") || userString.equals("d")) {
+                    p1.setPen("Down");
+                    System.out.println("The pen is set " + p1.pen);
+                } else if (userString.equals("R") || userString.equals("r")) {
+                    if (Objects.equals(p1.getOrientation(), "North"))
+                        p1.setOrientation("East");
+                    else if (Objects.equals(p1.getOrientation(), "East"))
+                        p1.setOrientation("South");
+                    else if (Objects.equals(p1.getOrientation(), "South"))
+                        p1.setOrientation("West");
+                    else if (Objects.equals(p1.getOrientation(), "West"))
+                        p1.setOrientation("North");
+
+                    System.out.println("The player is facing " + p1.orientation);
+                } else if (userString.equals("L") || userString.equals("l")) {
+                    if (Objects.equals(p1.getOrientation(), "North"))
+                        p1.setOrientation("West");
+                    else if (Objects.equals(p1.getOrientation(), "East"))
+                        p1.setOrientation("North");
+                    else if (Objects.equals(p1.getOrientation(), "South"))
+                        p1.setOrientation("East");
+                    else if (Objects.equals(p1.getOrientation(), "West"))
+                        p1.setOrientation("South");
+                    System.out.println("The player is facing " + p1.orientation);
                 }
-                 else if (userString.contains("C") || userString.contains("c")) {
-                     printDetails(p1);
-                 }
-
-                 else if (userString.contains("U") || userString.contains("u")) {
-                     p1.setPen("Up");
-                     System.out.println("The pen is set " + p1.pen);
-                 }
-                 else if (userString.contains("D") || userString.contains("d")) {
-                     p1.setPen("Down");
-                     System.out.println("The pen is set " + p1.pen);
-                 }
-                 else if (userString.contains("R") || userString.contains("r")) {
-                     if(Objects.equals(p1.getOrientation(), "North"))
-                         p1.setOrientation("East");
-                     else if (Objects.equals(p1.getOrientation(), "East"))
-                         p1.setOrientation("South");
-                     else if (Objects.equals(p1.getOrientation(), "South"))
-                         p1.setOrientation("West");
-                     else if (Objects.equals(p1.getOrientation(), "West"))
-                         p1.setOrientation("North");
-
-                     System.out.println("The player is facing " + p1.orientation);
-                 }
-                 else if (userString.contains("L") || userString.contains("l")) {
-                     if(Objects.equals(p1.getOrientation(), "North"))
-                         p1.setOrientation("West");
-                     else if (Objects.equals(p1.getOrientation(), "East"))
-                         p1.setOrientation("North");
-                     else if (Objects.equals(p1.getOrientation(), "South"))
-                         p1.setOrientation("East");
-                     else if (Objects.equals(p1.getOrientation(), "West"))
-                         p1.setOrientation("South");
-                     System.out.println("The player is facing " + p1.orientation);
-                 }
+                else System.out.println("Wrong command.");
             }
         }
     }
@@ -93,14 +84,13 @@ public class Driver {
             }
             p1 = new Player(0, 0, "Up", "North", newBoard, arraySize, true);
 //            printBoard(p1);
-            } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Invalid initialization input");
         }
         return p1;
     }
 
-    static void printDetails(Player p1)
-    {
+    static void printDetails(Player p1) {
         System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
     }
 
