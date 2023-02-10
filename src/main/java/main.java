@@ -7,24 +7,41 @@ public class main {
 
     public static boolean isEnded = false;
     static Scanner userInput = null;
+    static Player p1 = null;
     public static void main(String[] args) {
 
         while (!isEnded) {
             System.out.println("Enter command:");
             userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
-            System.out.println("You entered command: " + userString);
-            if (userString.contains("Q") || userString.contains("q"))
+            if (userString.equals("Q") || userString.equals("q"))
             {
                 isEnded = true;
-            } else if (userString.contains("I") || userString.contains("i")) {
-                initializeArray(userString);
+                System.out.println("Ending Program");
+                break;
+            }
+            System.out.println("You entered command: " + userString);
+            if(p1 == null)
+            {
+                if (userString.contains("I") || userString.contains("i")) {
+                    p1 = initializeArray(userString);
+                }
+                else
+                {
+                    System.out.println("Invalid command. The game needs to be initialized first");
+                }
+            }
+            else
+            {
+                 if (userString.contains("I") || userString.contains("i")) {
+                    initializeArray(userString);
+                }
             }
         }
     }
 
 
-    static void initializeArray(String userString) {
+    static Player initializeArray(String userString) {
         int arraySize;
         try {
             arraySize = Integer.parseInt(userString.substring(2, userString.length()));
@@ -38,8 +55,9 @@ public class main {
             }
             printBoard(newBoard, arraySize, p1);
         } catch (Exception e) {
-            System.out.println("Invalid input");
+            System.out.println("Invalid initialization input");
         }
+        return p1;
     }
 
     static void printBoard(int[][] board, int arraySize, Player p1) {
@@ -53,7 +71,6 @@ public class main {
                 }
             }
         }
-
         printedBoard[(arraySize - 1) - p1.horzPos][p1.vertPos] = "P";
         for (String[] row : printedBoard) {
             System.out.println(Arrays.toString(row));
