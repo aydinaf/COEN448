@@ -38,9 +38,25 @@ public class Driver {
                  if (userString.contains("I") || userString.contains("i")) {
                     initializeArray(userString);
                 }
-                 else if (userString.contains("C") || userString.contains("c")) {
+                 else if (userString.equals("C") || userString.equals("c")) {
                     printBoard(p1);
                 }
+                 else if (userString.equals("U") || userString.equals("u")) {
+                     p1.setPen("Up");
+                     System.out.println("The pen is set " + p1.pen);
+                 }
+                 else if (userString.equals("D") || userString.equals("d")) {
+                     p1.setPen("Down");
+                     System.out.println("The pen is set " + p1.pen);
+                 }
+                 else if (userString.equals("R") || userString.equals("r")) { //need to fix this to take into account the players current orientation
+                     p1.setOrientation("East");
+                     System.out.println("The player is facing " + p1.orientation);
+                 }
+                 else if (userString.equals("L") || userString.equals("l")) {  //need to fix this to take into account the players current orientation
+                     p1.setOrientation("West");
+                     System.out.println("The player is facing " + p1.orientation);
+                 }
             }
         }
     }
@@ -49,7 +65,7 @@ public class Driver {
     static Player initializeArray(String userString) {
         int arraySize;
         try {
-            arraySize = Integer.parseInt(userString.substring(2, userString.length()));
+            arraySize = Integer.parseInt(userString.substring(2));
             int[][] newBoard = new int[arraySize][arraySize];
             for (int i = 0; i < arraySize; i++) {
                 for (int j = 0; j < arraySize; j++) {
