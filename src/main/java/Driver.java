@@ -53,12 +53,27 @@ public class Driver {
                      p1.setPen("Down");
                      System.out.println("The pen is set " + p1.pen);
                  }
-                 else if (userString.contains("R") || userString.contains("r")) { //need to fix this to take into account the players current orientation
-                     p1.setOrientation("East");
+                 else if (userString.contains("R") || userString.contains("r")) {
+                     if(Objects.equals(p1.getOrientation(), "North"))
+                         p1.setOrientation("East");
+                     else if (Objects.equals(p1.getOrientation(), "East"))
+                         p1.setOrientation("South");
+                     else if (Objects.equals(p1.getOrientation(), "South"))
+                         p1.setOrientation("West");
+                     else if (Objects.equals(p1.getOrientation(), "West"))
+                         p1.setOrientation("North");
+
                      System.out.println("The player is facing " + p1.orientation);
                  }
-                 else if (userString.contains("L") || userString.contains("l")) {  //need to fix this to take into account the players current orientation
-                     p1.setOrientation("West");
+                 else if (userString.contains("L") || userString.contains("l")) {
+                     if(Objects.equals(p1.getOrientation(), "North"))
+                         p1.setOrientation("West");
+                     else if (Objects.equals(p1.getOrientation(), "East"))
+                         p1.setOrientation("North");
+                     else if (Objects.equals(p1.getOrientation(), "South"))
+                         p1.setOrientation("East");
+                     else if (Objects.equals(p1.getOrientation(), "West"))
+                         p1.setOrientation("South");
                      System.out.println("The player is facing " + p1.orientation);
                  }
             }
