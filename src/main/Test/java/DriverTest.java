@@ -25,7 +25,7 @@ public class DriverTest {
     }
 
     @Test
-    public void Driver2ndTest() {
+    public void DriverInitPlayerTest() {
         int[][] newBoard = new int[9][9];
         Player testBot = new Player(0, 0, "Up", "North", newBoard, 9, true);
         String testOutput = Driver.printBoard(testBot);
@@ -186,5 +186,4 @@ public class DriverTest {
                 "[ ,  ,  , P,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
-
 }
