@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DriverTest {
     @Test
-    public void DriverTest() {
+    public void DriverMainTest() {
         // For testing System.out.println() statements
         String testInput = "I 9\np\nq\n";
 
@@ -137,6 +137,53 @@ public class DriverTest {
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
                 "[P,  ,  ,  ,  ]\n";
+        assertEquals(expected, Driver.printBoard(testBot));
+    }
+
+    @Test
+    public void Move0NpenDownTest() {
+        int[][] newBoard = new int[5][5];
+        Player testBot = new Player(0, 0, "Down", "North", newBoard, 5, true);
+        Driver.move(0, testBot);
+        String expected = "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[P,  ,  ,  ,  ]\n";
+        assertEquals(expected, Driver.printBoard(testBot));
+    }
+
+    @Test
+    public void Move1SpenDownTest() {
+        int[][] newBoard = new int[5][5];
+        Player testBot = new Player(0, 0, "Down", "South", newBoard, 5, true);
+        Driver.move(1, testBot);
+        String expected = "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[P,  ,  ,  ,  ]\n";
+        assertEquals(expected, Driver.printBoard(testBot));
+    }
+
+    @Test
+    public void Move1NpenUp2NpenDown3EpenUp3SpenDownTest() {
+        int[][] newBoard = new int[5][5];
+        Player testBot = new Player(0, 0, "Up", "North", newBoard, 5, true);
+        Driver.move(1, testBot);
+        testBot.pen = "Down";
+        Driver.move(2, testBot);
+        testBot.orientation = "East";
+        testBot.pen = "Up";
+        Driver.move(3, testBot);
+        testBot.orientation = "South";
+        testBot.pen = "Down";
+        Driver.move(3, testBot);
+        String expected = "[ ,  ,  ,  ,  ]\n" +
+                "[*,  ,  , *,  ]\n" +
+                "[*,  ,  , *,  ]\n" +
+                "[*,  ,  , *,  ]\n" +
+                "[ ,  ,  , P,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
