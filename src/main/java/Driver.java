@@ -36,7 +36,7 @@ public class Driver {
                 } else if (userString.equals("P") || userString.equals("p")) {
                     System.out.println(printBoard(p1));
                 } else if (userString.equals("C") || userString.equals("c")) {
-                    printDetails(p1);
+                    System.out.println(printDetails(p1));
                 } else if (userString.equals("U") || userString.equals("u")) {
                     p1.setPen("Up");
                     System.out.println("The pen is set " + p1.pen);
@@ -132,8 +132,11 @@ public class Driver {
         return p1;
     }
 
-    static void printDetails(Player p1) {
-        System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+    static String printDetails(Player p1) {
+        String output = "";
+        output = ("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+        return output;
+        //System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
     }
 
     static void writeToBoard(Player p1) {
