@@ -1,4 +1,4 @@
-public class Player{
+public class Player {
     int vertPos;
     int horzPos;
     String pen;
@@ -10,8 +10,7 @@ public class Player{
 
     boolean isPlayerCreated;
 
-    Player(int vertPos, int horzPos, String pen, String orientation, int board[][], int arraySize, boolean isPlayerCreated)
-    {
+    Player(int vertPos, int horzPos, String pen, String orientation, int board[][], int arraySize, boolean isPlayerCreated) {
         this.vertPos = vertPos;
         this.horzPos = horzPos;
         this.pen = pen;

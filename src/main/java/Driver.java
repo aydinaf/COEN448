@@ -15,10 +15,10 @@ public class Driver {
             System.out.println("Enter command:");
             userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
-            if(userString.length()==0){
+            if (userString.length() == 0) {
                 continue;
             }
-            if (userString.contains("Q") || userString.contains("q")) {
+            if (userString.equals("Q") || userString.equals("q")) {
                 isEnded = true;
                 System.out.println("Ending Program");
                 break;
@@ -45,30 +45,71 @@ public class Driver {
                     p1.setPen("Down");
                     System.out.println("The pen is set " + p1.pen);
                 } else if (userString.equals("R") || userString.equals("r")) {
-                    if (Objects.equals(p1.getOrientation(), "North"))
-                        p1.setOrientation("East");
-                    else if (Objects.equals(p1.getOrientation(), "East"))
-                        p1.setOrientation("South");
-                    else if (Objects.equals(p1.getOrientation(), "South"))
-                        p1.setOrientation("West");
-                    else if (Objects.equals(p1.getOrientation(), "West"))
-                        p1.setOrientation("North");
+                    if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("East");
+                    else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("South");
+                    else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("West");
+                    else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("North");
 
                     System.out.println("The player is facing " + p1.orientation);
                 } else if (userString.equals("L") || userString.equals("l")) {
-                    if (Objects.equals(p1.getOrientation(), "North"))
-                        p1.setOrientation("West");
-                    else if (Objects.equals(p1.getOrientation(), "East"))
-                        p1.setOrientation("North");
-                    else if (Objects.equals(p1.getOrientation(), "South"))
-                        p1.setOrientation("East");
-                    else if (Objects.equals(p1.getOrientation(), "West"))
-                        p1.setOrientation("South");
+                    if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("West");
+                    else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("North");
+                    else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("East");
+                    else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("South");
                     System.out.println("The player is facing " + p1.orientation);
-                }
-                else System.out.println("Wrong command.");
+                } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.charAt(1) == ' ') {
+                    try {
+                        int steps = Integer.parseInt(userString.substring(2));
+                        move(steps, p1);
+                    } catch (Exception e) {
+                        System.out.println("Incorrect command format");
+                    }
+                } else System.out.println("Wrong command.");
             }
         }
+    }
+
+    static void move(int steps, Player p1) {
+        writeToBoard(p1);
+        if (steps >= 0) {
+            if (Objects.equals(p1.getOrientation(), "North")) {
+                if (((p1.horzPos) + steps) > p1.arraySize - 1) {
+                    System.out.println("Moved too much");
+                } else {
+                    for (; steps > 0; steps--) {
+                        p1.horzPos++;
+                        writeToBoard(p1);
+                    }
+                }
+            } else if (Objects.equals(p1.getOrientation(), "South")) {
+                if (((p1.horzPos) - steps) < 0) {
+                    System.out.println("Moved too much");
+                } else {
+                    for (; steps > 0; steps--) {
+                        p1.horzPos--;
+                        writeToBoard(p1);
+                    }
+                }
+            } else if (Objects.equals(p1.getOrientation(), "East")) {
+                if (((p1.vertPos) + steps) > p1.arraySize - 1) {
+                    System.out.println("Moved too much");
+                } else {
+                    for (; steps > 0; steps--) {
+                        p1.vertPos++;
+                        writeToBoard(p1);
+                    }
+                }
+            } else if (Objects.equals(p1.getOrientation(), "West")) {
+                if (((p1.vertPos) - steps) < 0) {
+                    System.out.println("Moved too much");
+                } else {
+                    for (; steps > 0; steps--) {
+                        p1.vertPos--;
+                        writeToBoard(p1);
+                    }
+                }
+            }
+        } else System.out.println("Please enter a positive integer.");
     }
 
 
@@ -76,14 +117,16 @@ public class Driver {
         int arraySize;
         try {
             arraySize = Integer.parseInt(userString.substring(2));
-            int[][] newBoard = new int[arraySize][arraySize];
-            for (int i = 0; i < arraySize; i++) {
-                for (int j = 0; j < arraySize; j++) {
-                    newBoard[i][j] = 0;
+            if (arraySize > 0) {
+                int[][] newBoard = new int[arraySize][arraySize];
+                for (int i = 0; i < arraySize; i++) {
+                    for (int j = 0; j < arraySize; j++) {
+                        newBoard[i][j] = 0;
+                    }
                 }
-            }
-            p1 = new Player(0, 0, "Up", "North", newBoard, arraySize, true);
+                p1 = new Player(0, 0, "Up", "North", newBoard, arraySize, true);
 //            printBoard(p1);
+            } else System.out.println("Size of field must be greater than 0.");
         } catch (Exception e) {
             System.out.println("Invalid initialization input");
         }
@@ -92,6 +135,12 @@ public class Driver {
 
     static void printDetails(Player p1) {
         System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+    }
+
+    static void writeToBoard(Player p1) {
+        if (Objects.equals(p1.pen, "Down")) {
+            p1.board[p1.arraySize - 1 - p1.horzPos][p1.vertPos] = 1;
+        }
     }
 
     static void printBoard(Player p1) {
