@@ -25,16 +25,16 @@ public class Driver {
 
             System.out.println("You entered command: " + userString);
             if (!p1.isPlayerCreated) {
-                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
                     p1 = initializeArray(userString);
                 } else {
                     System.out.println("Invalid command. The game needs to be initialized first");
                 }
             } else {
-                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
                     initializeArray(userString);
                 } else if (userString.equals("P") || userString.equals("p")) {
-                    printBoard(p1);
+                    System.out.println(printBoard(p1));
                 } else if (userString.equals("C") || userString.equals("c")) {
                     printDetails(p1);
                 } else if (userString.equals("U") || userString.equals("u")) {
