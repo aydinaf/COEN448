@@ -10,10 +10,9 @@ public class Driver {
     static Player p1 = new Player(0, 0, "", "", new int[0][0], 0, false);
 
     public static void main(String[] args) {
-
+        userInput = new Scanner(System.in);
         while (!isEnded) {
             System.out.println("Enter command:");
-            userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
             if (userString.length() == 0) {
                 continue;
@@ -26,18 +25,18 @@ public class Driver {
 
             System.out.println("You entered command: " + userString);
             if (!p1.isPlayerCreated) {
-                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
                     p1 = initializeArray(userString);
                 } else {
                     System.out.println("Invalid command. The game needs to be initialized first");
                 }
             } else {
-                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.charAt(1) == ' ') {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
                     initializeArray(userString);
                 } else if (userString.equals("P") || userString.equals("p")) {
-                    printBoard(p1);
+                    System.out.println(printBoard(p1));
                 } else if (userString.equals("C") || userString.equals("c")) {
-                    printDetails(p1);
+                    System.out.println(printDetails(p1));
                 } else if (userString.equals("U") || userString.equals("u")) {
                     p1.setPen("Up");
                     System.out.println("The pen is set " + p1.pen);
@@ -133,8 +132,11 @@ public class Driver {
         return p1;
     }
 
-    static void printDetails(Player p1) {
-        System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+    static String printDetails(Player p1) {
+        String output = "";
+        output = ("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+        return output;
+        //System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
     }
 
     static void writeToBoard(Player p1) {
@@ -143,7 +145,9 @@ public class Driver {
         }
     }
 
-    static void printBoard(Player p1) {
+    static String printBoard(Player p1) {
+
+        String boardOutput = "";
 
         String[][] printedBoard = new String[p1.arraySize][p1.arraySize];
         for (int i = 0; i < p1.arraySize; i++) {
@@ -157,7 +161,9 @@ public class Driver {
         }
         printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = "P";
         for (String[] row : printedBoard) {
-            System.out.println(Arrays.toString(row));
+//            System.out.println(Arrays.toString(row));
+            boardOutput = boardOutput + (Arrays.toString(row)) + "\n";
         }
+        return boardOutput;
     }
 }
