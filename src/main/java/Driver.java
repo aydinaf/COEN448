@@ -10,10 +10,9 @@ public class Driver {
     static Player p1 = new Player(0, 0, "", "", new int[0][0], 0, false);
 
     public static void main(String[] args) {
-
+        userInput = new Scanner(System.in);
         while (!isEnded) {
             System.out.println("Enter command:");
-            userInput = new Scanner(System.in);
             String userString = userInput.nextLine();
             if (userString.length() == 0) {
                 continue;
@@ -143,7 +142,9 @@ public class Driver {
         }
     }
 
-    static void printBoard(Player p1) {
+    static String printBoard(Player p1) {
+
+        String boardOutput = "";
 
         String[][] printedBoard = new String[p1.arraySize][p1.arraySize];
         for (int i = 0; i < p1.arraySize; i++) {
@@ -157,7 +158,9 @@ public class Driver {
         }
         printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = "P";
         for (String[] row : printedBoard) {
-            System.out.println(Arrays.toString(row));
+//            System.out.println(Arrays.toString(row));
+            boardOutput = boardOutput + (Arrays.toString(row)) + "\n";
         }
+        return boardOutput;
     }
 }
