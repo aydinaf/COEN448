@@ -148,6 +148,7 @@ public class Driver {
     static String printBoard(Player p1) {
 
         String boardOutput = "";
+        String playerDirection= " ";
 
         String[][] printedBoard = new String[p1.arraySize][p1.arraySize];
         for (int i = 0; i < p1.arraySize; i++) {
@@ -159,7 +160,18 @@ public class Driver {
                 }
             }
         }
-        printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = "P";
+        switch(p1.orientation){
+            case "North": playerDirection = "^";
+            break;
+            case "South": playerDirection = "v";
+            break;
+            case "East": playerDirection = ">";
+            break;
+            case "West": playerDirection = "<";
+            break;
+            default: playerDirection = "P";
+        }
+        printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = playerDirection;
         for (String[] row : printedBoard) {
 //            System.out.println(Arrays.toString(row));
             boardOutput = boardOutput + (Arrays.toString(row)) + "\n";

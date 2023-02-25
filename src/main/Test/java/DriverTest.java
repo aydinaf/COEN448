@@ -29,7 +29,7 @@ public class DriverTest {
         int[][] newBoard = new int[9][9];
         Player testBot = new Player(0, 0, "Up", "North", newBoard, 9, true);
         String testOutput = Driver.printBoard(testBot);
-        assertEquals("[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[P,  ,  ,  ,  ,  ,  ,  ,  ]\n", testOutput);
+        assertEquals("[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ,  ,  ,  ,  ]\n[^,  ,  ,  ,  ,  ,  ,  ,  ]\n", testOutput);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class DriverTest {
         int[][] newBoard = new int[5][5];
         Player testBot = new Player(0, 0, "Up", "North", newBoard, 5, true);
         Driver.move(2, testBot);
-        String expected = "[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[P,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n";
+        String expected = "[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[^,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -110,7 +110,7 @@ public class DriverTest {
         int[][] newBoard = new int[5][5];
         Player testBot = new Player(0, 0, "Down", "East", newBoard, 5, true);
         Driver.move(2, testBot);
-        String expected = "[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[*, *, P,  ,  ]\n";
+        String expected = "[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[ ,  ,  ,  ,  ]\n[*, *, >,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -123,7 +123,7 @@ public class DriverTest {
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
-                "[P,  ,  ,  ,  ]\n";
+                "[>,  ,  ,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -136,7 +136,7 @@ public class DriverTest {
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
-                "[P,  ,  ,  ,  ]\n";
+                "[^,  ,  ,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -149,7 +149,7 @@ public class DriverTest {
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
-                "[P,  ,  ,  ,  ]\n";
+                "[^,  ,  ,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -162,7 +162,7 @@ public class DriverTest {
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
                 "[ ,  ,  ,  ,  ]\n" +
-                "[P,  ,  ,  ,  ]\n";
+                "[v,  ,  ,  ,  ]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
@@ -183,7 +183,22 @@ public class DriverTest {
                 "[*,  ,  , *,  ]\n" +
                 "[*,  ,  , *,  ]\n" +
                 "[*,  ,  , *,  ]\n" +
-                "[ ,  ,  , P,  ]\n";
+                "[ ,  ,  , v,  ]\n";
+        assertEquals(expected, Driver.printBoard(testBot));
+    }
+
+    @Test
+    public void Move4E2WpenDownTest() {
+        int[][] newBoard = new int[5][5];
+        Player testBot = new Player(0, 0, "Down", "East", newBoard, 5, true);
+        Driver.move(4, testBot);
+        testBot.orientation = "West";
+        Driver.move(2, testBot);
+        String expected = "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[ ,  ,  ,  ,  ]\n" +
+                "[*, *, <, *, *]\n";
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
