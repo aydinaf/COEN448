@@ -56,7 +56,7 @@ public class Driver {
                     else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("East");
                     else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("South");
                     System.out.println("The player is facing " + p1.orientation);
-                } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.charAt(1) == ' ') {
+                } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.length()>1 && userString.charAt(1) == ' ') {
                     try {
                         int steps = Integer.parseInt(userString.substring(2));
                         move(steps, p1);
