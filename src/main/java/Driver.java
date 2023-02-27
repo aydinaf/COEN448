@@ -116,7 +116,7 @@ public class Driver {
         int arraySize;
         try {
             arraySize = Integer.parseInt(userString.substring(2));
-            if (arraySize > 0) {
+            if (arraySize > 0 && arraySize<1000) {
                 int[][] newBoard = new int[arraySize][arraySize];
                 for (int i = 0; i < arraySize; i++) {
                     for (int j = 0; j < arraySize; j++) {
@@ -125,7 +125,7 @@ public class Driver {
                 }
                 p1 = new Player(0, 0, "Up", "North", newBoard, arraySize, true);
 //            printBoard(p1);
-            } else System.out.println("Size of field must be greater than 0.");
+            } else System.out.println("Size of field must be greater than 0 and smaller than 1000.");
         } catch (Exception e) {
             System.out.println("Invalid initialization input");
         }
