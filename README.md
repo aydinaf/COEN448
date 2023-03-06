@@ -2,6 +2,7 @@
 
 
 ****IMPORTANT NOTE FOR USER****
+
 ⚠ Use Master branch only ⚠
 
 There are multiple branches which were created for testing parts of the project. However,
