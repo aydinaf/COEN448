@@ -1,3 +1,18 @@
+
+
+
+****IMPORTANT NOTE FOR USER****
+
+
+There are multiple branches which were created for testing parts of the project. However,
+any user testing this project should ONLY focus on the MASTER FILE, every other branch is 
+a test branch and it does NOT possess the official release version
+
+
+
+*******************************************************************************************************
+*******************************************************************************************************
+
 # COEN448-1
 
 1. Project Description
