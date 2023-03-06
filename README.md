@@ -2,7 +2,7 @@
 
 
 ****IMPORTANT NOTE FOR USER****
->> Use Master branch only <<
+⚠ Use Master branch only ⚠
 
 There are multiple branches which were created for testing parts of the project. However,
 any user testing this project should ONLY focus on the MASTER branch, every other branch is 
