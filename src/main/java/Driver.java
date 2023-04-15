@@ -7,6 +7,8 @@ public class Driver {
     public static boolean isEnded = false;
     static Scanner userInput = null;
 
+    static List<String> inputHistory = new ArrayList<String>();
+
     static Player p1 = new Player(0, 0, "", "", new int[0][0], 0, false);
 
     public static void main(String[] args) {
@@ -14,6 +16,7 @@ public class Driver {
         while (!isEnded) {
             System.out.println("Enter command:");
             String userString = userInput.nextLine();
+            inputHistory.add(userString);
             if (userString.length() == 0) {
                 continue;
             }
@@ -37,6 +40,8 @@ public class Driver {
                     System.out.println(printBoard(p1));
                 } else if (userString.equals("C") || userString.equals("c")) {
                     System.out.println(printDetails(p1));
+                } else if (userString.equals("H") || userString.equals("h")) {
+                    System.out.println(printHistory());
                 } else if (userString.equals("U") || userString.equals("u")) {
                     p1.setPen("Up");
                     System.out.println("The pen is set " + p1.pen);
@@ -56,7 +61,7 @@ public class Driver {
                     else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("East");
                     else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("South");
                     System.out.println("The player is facing " + p1.orientation);
-                } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.length()>1 && userString.charAt(1) == ' ') {
+                } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.length() > 1 && userString.charAt(1) == ' ') {
                     try {
                         int steps = Integer.parseInt(userString.substring(2));
                         move(steps, p1);
@@ -116,7 +121,7 @@ public class Driver {
         int arraySize;
         try {
             arraySize = Integer.parseInt(userString.substring(2));
-            if (arraySize > 0 && arraySize<1000) {
+            if (arraySize > 0 && arraySize < 1000) {
                 int[][] newBoard = new int[arraySize][arraySize];
                 for (int i = 0; i < arraySize; i++) {
                     for (int j = 0; j < arraySize; j++) {
@@ -145,10 +150,18 @@ public class Driver {
         }
     }
 
+    static String printHistory() {
+        String output = "\nYour input history is:\n";
+        for (String history:inputHistory){
+            output += (history +"\n");
+        }
+        return output;
+    }
+
     static String printBoard(Player p1) {
 
         String boardOutput = "";
-        String playerDirection= " ";
+        String playerDirection = " ";
 
         String[][] printedBoard = new String[p1.arraySize][p1.arraySize];
         for (int i = 0; i < p1.arraySize; i++) {
@@ -160,16 +173,21 @@ public class Driver {
                 }
             }
         }
-        switch(p1.orientation){
-            case "North": playerDirection = "^";
-            break;
-            case "South": playerDirection = "v";
-            break;
-            case "East": playerDirection = ">";
-            break;
-            case "West": playerDirection = "<";
-            break;
-            default: playerDirection = "P";
+        switch (p1.orientation) {
+            case "North":
+                playerDirection = "^";
+                break;
+            case "South":
+                playerDirection = "v";
+                break;
+            case "East":
+                playerDirection = ">";
+                break;
+            case "West":
+                playerDirection = "<";
+                break;
+            default:
+                playerDirection = "P";
         }
         printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = playerDirection;
         for (String[] row : printedBoard) {
