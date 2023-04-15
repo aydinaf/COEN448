@@ -7,7 +7,7 @@
 
 There are multiple branches which were created for testing parts of the project. However,
 any user testing this project should ONLY focus on the MASTER branch, every other branch is 
-for testing is NOT the official release version.
+for testing and is NOT the official release version.
 
 *******************************************************************************************************
 *******************************************************************************************************
