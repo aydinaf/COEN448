@@ -202,4 +202,11 @@ public class DriverTest {
         assertEquals(expected, Driver.printBoard(testBot));
     }
 
+    @Test
+    public void executeTest() {
+        Driver.execute("i 9");
+        String expected = "You entered command: i 9";
+
+    }
+
 }
