@@ -25,68 +25,68 @@ public class Driver {
                 System.out.println("Ending Program");
                 break;
             }
-            execute(userString);
+
+            System.out.println("You entered command: " + userString);
+            if (!p1.isPlayerCreated) {
+                if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
+                    p1 = initializeArray(userString);
+                } else {
+                    System.out.println("Invalid command. The game needs to be initialized first");
+                }
+            } else {
+                execute(userString);
+            }
             inputHistory.add(userString);
         }
     }
 
     static int execute(String userString) {
-        System.out.println("You entered command: " + userString);
-        if (!p1.isPlayerCreated) {
-            if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
-                p1 = initializeArray(userString);
-                return 1;
-            } else {
-                System.out.println("Invalid command. The game needs to be initialized first");
-                return 2;
-            }
-        } else {
-            if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
-                initializeArray(userString);
-                return 3;
-            } else if (userString.equals("P") || userString.equals("p")) {
-                System.out.println(printBoard(p1));
-                return 4;
-            } else if (userString.equals("C") || userString.equals("c")) {
-                System.out.println(printDetails(p1));
-                return 5;
-            } else if (userString.equals("H") || userString.equals("h")) {
-                System.out.println(printHistory());
-                return 6;
-            } else if (userString.equals("U") || userString.equals("u")) {
-                p1.setPen("Up");
-                System.out.println("The pen is set " + p1.pen);
-                return 7;
-            } else if (userString.equals("D") || userString.equals("d")) {
-                p1.setPen("Down");
-                System.out.println("The pen is set " + p1.pen);
-                return 8;
-            } else if (userString.equals("R") || userString.equals("r")) {
-                if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("East");
-                else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("South");
-                else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("West");
-                else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("North");
 
-                System.out.println("The player is facing " + p1.orientation);
-                return 9;
-            } else if (userString.equals("L") || userString.equals("l")) {
-                if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("West");
-                else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("North");
-                else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("East");
-                else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("South");
-                System.out.println("The player is facing " + p1.orientation);
-                return 10;
-            } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.length() > 1 && userString.charAt(1) == ' ') {
-                try {
-                    int steps = Integer.parseInt(userString.substring(2));
-                    move(steps, p1);
-                    return 11;
-                } catch (Exception e) {
-                    System.out.println("Incorrect command format");
-                    return 12;
-                }
-            } else System.out.println("Wrong command.");
-        }
+        if ((userString.charAt(0) == 'I' || userString.charAt(0) == 'i') && userString.length() > 1 && userString.charAt(1) == ' ') {
+            initializeArray(userString);
+            return 3;
+        } else if (userString.equals("P") || userString.equals("p")) {
+            System.out.println(printBoard(p1));
+            return 4;
+        } else if (userString.equals("C") || userString.equals("c")) {
+            System.out.println(printDetails(p1));
+            return 5;
+        } else if (userString.equals("H") || userString.equals("h")) {
+            System.out.println(printHistory());
+            return 6;
+        } else if (userString.equals("U") || userString.equals("u")) {
+            p1.setPen("Up");
+            System.out.println("The pen is set " + p1.pen);
+            return 7;
+        } else if (userString.equals("D") || userString.equals("d")) {
+            p1.setPen("Down");
+            System.out.println("The pen is set " + p1.pen);
+            return 8;
+        } else if (userString.equals("R") || userString.equals("r")) {
+            if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("East");
+            else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("South");
+            else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("West");
+            else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("North");
+
+            System.out.println("The player is facing " + p1.orientation);
+            return 9;
+        } else if (userString.equals("L") || userString.equals("l")) {
+            if (Objects.equals(p1.getOrientation(), "North")) p1.setOrientation("West");
+            else if (Objects.equals(p1.getOrientation(), "East")) p1.setOrientation("North");
+            else if (Objects.equals(p1.getOrientation(), "South")) p1.setOrientation("East");
+            else if (Objects.equals(p1.getOrientation(), "West")) p1.setOrientation("South");
+            System.out.println("The player is facing " + p1.orientation);
+            return 10;
+        } else if ((userString.charAt(0) == 'M' || userString.charAt(0) == 'm') && userString.length() > 1 && userString.charAt(1) == ' ') {
+            try {
+                int steps = Integer.parseInt(userString.substring(2));
+                move(steps, p1);
+                return 11;
+            } catch (Exception e) {
+                System.out.println("Incorrect command format");
+                return 12;
+            }
+        } else System.out.println("Wrong command.");
         return 0;
     }
 

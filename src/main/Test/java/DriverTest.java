@@ -203,10 +203,79 @@ public class DriverTest {
     }
 
     @Test
-    public void executeTest() {
-        Driver.execute("i 9");
-        String expected = "You entered command: i 9";
-
+    public void execute3Test() {
+        String testCommand = "i 9";
+        int expected = 3;
+        assertEquals(expected, Driver.execute(testCommand));
     }
 
+    @Test
+    public void execute4Test() {
+        String testCommand = "p";
+        int expected = 4;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute5Test() {
+        String testCommand = "c";
+        int expected = 5;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute6Test() {
+        String testCommand = "h";
+        int expected = 6;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute7Test() {
+        String testCommand = "u";
+        int expected = 7;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute8Test() {
+        String testCommand = "d";
+        int expected = 8;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute9Test() {
+        String testCommand = "r";
+        int expected = 9;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute10Test() {
+        String testCommand = "l";
+        int expected = 10;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute11Test() {
+        String testCommand = "m 3";
+        int expected = 11;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute12Test() {
+        String testCommand = "m 0.5";
+        int expected = 12;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute0Test() {
+        String testCommand = "wrong Command";
+        int expected = 0;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
 }
