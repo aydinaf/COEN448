@@ -12,6 +12,7 @@ public class Driver {
     static Player p1 = new Player(0, 0, "", "", new int[0][0], 0, false);
 
     public static void main(String[] args) {
+        System.out.println("List of available commands: I (#), M (#), Q, C, R, L, P, U, D, H");
         userInput = new Scanner(System.in);
         while (!isEnded) {
             System.out.println("Enter command:");
@@ -145,7 +146,6 @@ public class Driver {
                     }
                 }
                 p1 = new Player(0, 0, "Up", "North", newBoard, arraySize, true);
-//            printBoard(p1);
             } else System.out.println("Size of field must be greater than 0 and smaller than 1000.");
         } catch (Exception e) {
             System.out.println("Invalid initialization input");
@@ -155,9 +155,8 @@ public class Driver {
 
     static String printDetails(Player p1) {
         String output = "";
-        output = ("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
+        output = ("Position: " + p1.vertPos + " , " + p1.horzPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
         return output;
-        //System.out.println("Position: " + p1.horzPos + " , " + p1.vertPos + " - Pen: " + p1.pen + " - Facing: " + p1.orientation);
     }
 
     static void writeToBoard(Player p1) {
@@ -202,12 +201,9 @@ public class Driver {
             case "West":
                 playerDirection = "<";
                 break;
-            default:
-                playerDirection = "P";
         }
         printedBoard[(p1.arraySize - 1) - p1.horzPos][p1.vertPos] = playerDirection;
         for (String[] row : printedBoard) {
-//            System.out.println(Arrays.toString(row));
             boardOutput = boardOutput + (Arrays.toString(row)) + "\n";
         }
         return boardOutput;
