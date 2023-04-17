@@ -210,8 +210,22 @@ public class DriverTest {
     }
 
     @Test
+    public void execute3CapitalTest() {
+        String testCommand = "I 9";
+        int expected = 3;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
     public void execute4Test() {
         String testCommand = "p";
+        int expected = 4;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute4CapitalTest() {
+        String testCommand = "P";
         int expected = 4;
         assertEquals(expected, Driver.execute(testCommand));
     }
@@ -224,8 +238,22 @@ public class DriverTest {
     }
 
     @Test
+    public void execute5CapitalTest() {
+        String testCommand = "C";
+        int expected = 5;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
     public void execute6Test() {
         String testCommand = "h";
+        int expected = 6;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute6CapitalTest() {
+        String testCommand = "H";
         int expected = 6;
         assertEquals(expected, Driver.execute(testCommand));
     }
@@ -238,8 +266,22 @@ public class DriverTest {
     }
 
     @Test
+    public void execute7CapitalTest() {
+        String testCommand = "U";
+        int expected = 7;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
     public void execute8Test() {
         String testCommand = "d";
+        int expected = 8;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute8CapitalTest() {
+        String testCommand = "D";
         int expected = 8;
         assertEquals(expected, Driver.execute(testCommand));
     }
@@ -252,8 +294,22 @@ public class DriverTest {
     }
 
     @Test
+    public void execute9CapitalTest() {
+        String testCommand = "R";
+        int expected = 9;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
     public void execute10Test() {
         String testCommand = "l";
+        int expected = 10;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute10CapitalTest() {
+        String testCommand = "L";
         int expected = 10;
         assertEquals(expected, Driver.execute(testCommand));
     }
@@ -266,8 +322,22 @@ public class DriverTest {
     }
 
     @Test
+    public void execute11CapitalTest() {
+        String testCommand = "M 3";
+        int expected = 11;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
     public void execute12Test() {
         String testCommand = "m 0.5";
+        int expected = 12;
+        assertEquals(expected, Driver.execute(testCommand));
+    }
+
+    @Test
+    public void execute12CapitalTest() {
+        String testCommand = "M 0.5";
         int expected = 12;
         assertEquals(expected, Driver.execute(testCommand));
     }
