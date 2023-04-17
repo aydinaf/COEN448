@@ -278,4 +278,19 @@ public class DriverTest {
         int expected = 0;
         assertEquals(expected, Driver.execute(testCommand));
     }
+
+    @Test
+    public void printHistoryTest() {
+        Driver.inputHistory.add("i 9");
+        Driver.inputHistory.add("m 2");
+        Driver.inputHistory.add("someWrongCommand");
+        Driver.inputHistory.add("c");
+        String expected = "\n" +
+                "Your input history is:\n" +
+                "i 9\n" +
+                "m 2\n" +
+                "someWrongCommand\n" +
+                "c\n";
+        assertEquals(expected, Driver.printHistory());
+    }
 }
